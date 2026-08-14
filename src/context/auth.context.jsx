@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom"
 import api from "../lib/api";
 
 const AuthContext = createContext();
@@ -6,15 +7,16 @@ const AuthContext = createContext();
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
   const login = async (body) => {
-    console.log(body);
     try {
       setLoading(true);
       const response = await api.post("/auth/login", body);
       if (response.status === 200) {
         setUser(response.data.user);
         localStorage.setItem("authToken", response.data.token);
+        navigate("/user")
       }
     } catch (error) {
       console.log(error);
@@ -37,10 +39,10 @@ export default function AuthProvider({ children }) {
   const verify = async () => {
     try {
       setLoading(true);
-      // const response = await api.get("/verify");
-      // if (response.status === 200) {
-      //   setUser(response.data.user);
-      // }
+      const response = await api.get("/auth/verify");
+      if (response.status === 200) {
+        setUser(response.data.user);
+      }
     } catch (error) {
       localStorage.clear();
       setUser(null);
@@ -53,6 +55,7 @@ export default function AuthProvider({ children }) {
   const logout = () => {
     setUser(null);
     localStorage.clear();
+    navigate("/auth")
   };
 
   useEffect(() => {

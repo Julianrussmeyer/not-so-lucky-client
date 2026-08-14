@@ -3,6 +3,7 @@ import { useAuthContext } from "../lib/useAuthContext.js";
 
 export default function AuthPage() {
   const { login, signup } = useAuthContext();
+  const [error, setError] = useState(null);
   const [signedUp, setSignedUp] = useState(true);
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -13,6 +14,24 @@ export default function AuthPage() {
 
   const handleChange = (e) => {
     setUserInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+
+    login({
+      loginInfo: userInfo.loginInfo,
+      password: userInfo.password,
+    });
+  };
+
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
+    signup({
+      email: userInfo.email,
+      username: userInfo.username,
+      password: userInfo.password,
+    });
   };
 
   useEffect(() => {
@@ -47,13 +66,7 @@ export default function AuthPage() {
               action="#"
               method="POST"
               className="space-y-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                login({
-                  loginInfo: userInfo.loginInfo,
-                  password: userInfo.password,
-                });
-              }}
+              onSubmit={handleLoginSubmit}
             >
               <div>
                 <label
@@ -161,14 +174,7 @@ export default function AuthPage() {
             action="#"
             method="POST"
             className="space-y-6"
-            onSubmit={(e) => {
-              e.preventDefault();
-              signup({
-                email: userInfo.email,
-                username: userInfo.username,
-                password: userInfo.password,
-              });
-            }}
+            onSubmit={handleSignupSubmit}
           >
             {/* Username */}
             <div>

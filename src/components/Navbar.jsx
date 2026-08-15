@@ -7,13 +7,20 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
 import { useAuthContext } from "../lib/useAuthContext.js";
+import { NavLink } from "react-router-dom";
 
 // Use NavLink https://reactrouter.com/api/components/NavLink
 
 export default function Example() {
   const { user, logout } = useAuthContext();
+
   return (
     <Disclosure
       as="nav"
@@ -37,7 +44,7 @@ export default function Example() {
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex shrink-0 items-center">
+            <NavLink to="/" className="flex shrink-0 items-center">
               <img
                 alt="Your Company"
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -48,27 +55,21 @@ export default function Example() {
                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                 className="h-8 w-auto not-dark:hidden"
               />
-            </div>
+            </NavLink>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               {/* Current: "border-indigo-600 dark:border-indigo-500 text-gray-900 dark:text-white", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white" */}
-              <a
-                href="/"
+              <NavLink
+                to="/"
                 className="inline-flex items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900 dark:border-indigo-500 dark:text-white"
               >
                 Dashboard
-              </a>
-              <a
-                href="#"
+              </NavLink>
+              <NavLink
+                to="#"
                 className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white"
               >
                 Games
-              </a>
-              <a
-                href="/auth"
-                className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white"
-              >
-                Login
-              </a>
+              </NavLink>
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -83,12 +84,11 @@ export default function Example() {
 
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
-              <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:focus-visible:outline-indigo-500">
+              <MenuButton className="relative flex rounded-full text-gray-400 hover:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600 dark:hover:text-white dark:focus:outline-indigo-500">
                 <span className="absolute -inset-1.5" />
                 <span className="sr-only">Open user menu</span>
-                <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                <UserCircleIcon
+                  aria-hidden="true"
                   className="size-8 rounded-full bg-gray-100 outline -outline-offset-1 outline-black/5 dark:bg-gray-800 dark:outline-white/10"
                 />
               </MenuButton>
@@ -99,12 +99,12 @@ export default function Example() {
               >
                 {user && (
                   <MenuItem>
-                    <a
-                      href="/user"
+                    <NavLink
+                      to="/user"
                       className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden dark:text-gray-300 dark:data-focus:bg-white/5"
                     >
                       Your profile
-                    </a>
+                    </NavLink>
                   </MenuItem>
                 )}
                 {user ? (
@@ -118,12 +118,12 @@ export default function Example() {
                   </MenuItem>
                 ) : (
                   <MenuItem>
-                    <a
-                      href="/auth"
+                    <NavLink
+                      to="/auth"
                       className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:outline-hidden dark:text-gray-300 dark:data-focus:bg-white/5"
                     >
                       Sign in
-                    </a>
+                    </NavLink>
                   </MenuItem>
                 )}
               </MenuItems>

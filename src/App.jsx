@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage.jsx";
 import AuthPage from "./pages/AuthPage.jsx";
 import User from "./pages/User.jsx";
 import Navbar from "./components/Navbar.jsx";
+import IsPrivate from "./components/IsPrivate.jsx"
 
 function App() {
   const { user } = useAuthContext();
@@ -15,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/user" element={<User />} />
+        <Route path="/user" element={<IsPrivate><User /></IsPrivate>} />
       </Routes>
     </div>
   );

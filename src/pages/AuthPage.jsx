@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuthContext } from "../lib/useAuthContext.js";
 
 export default function AuthPage() {
-  const { login, signup } = useAuthContext();
-  const [error, setError] = useState(null);
+  const { login, signup, error } = useAuthContext();
   const [signedUp, setSignedUp] = useState(true);
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -127,6 +126,7 @@ export default function AuthPage() {
                 >
                   Login
                 </button>
+                {error && <div className="pt-2 text-red-300">{error}</div>}
               </div>
             </form>
 
@@ -168,7 +168,6 @@ export default function AuthPage() {
             Create your account
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             action="#"
@@ -251,6 +250,7 @@ export default function AuthPage() {
               >
                 Sign up
               </button>
+              {error && <div className="pt-2 text-red-300">{error}</div>}
             </div>
           </form>
 

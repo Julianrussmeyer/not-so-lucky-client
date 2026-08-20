@@ -44,7 +44,7 @@ export default function Lotto6of49Page() {
           </button>
         </div>
       </div>
-      <div className="my-16 flex flex-col gap-8">{allUserTickets}</div>
+      <div className="my-16 flex flex-grid gap-8">{allUserTickets}</div>
     </div>
   );
 }

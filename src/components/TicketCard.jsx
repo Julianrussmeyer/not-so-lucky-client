@@ -26,7 +26,7 @@ export default function TicketCard({ ticket }) {
       </div>
       <div className="flex flex-col gap-8  px-4 py-5 sm:p-6">
         {ticketNumbers}
-        <div className="text-gray-400">Supernumber: <span className="bg-gray-300 w-10 p-2 rounded-full text-center text-gray-900">{ticket.supernumber}</span></div>
+        <div className="text-gray-400">Supernumber: <span className="bg-gray-300 w-10 p-2 rounded-full text-center text-gray-900">{ticket.superNumber}</span></div>
       </div>
       <div className="flex gap-4 px-4 py-4 sm:px-6">
         <button

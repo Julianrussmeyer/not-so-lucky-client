@@ -69,7 +69,6 @@ export default function AuthProvider({ children }) {
     if (token) {
       verify();
       console.log("##### You are logged in")
-      console.log(token)
     }
   }, []);
 

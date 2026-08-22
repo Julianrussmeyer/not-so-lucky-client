@@ -1,6 +1,7 @@
 import TicketCard from "../components/TicketCard.jsx";
 import api from "../lib/api";
 import { useState, useEffect } from "react";
+import CreateTicket from "../components/CreateTicket.jsx"
 
 export default function Lotto6of49Page() {
   const [tickets, setTickets] = useState([]);
@@ -29,10 +30,7 @@ export default function Lotto6of49Page() {
       <div className="mt-16 md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white">
-            Your Lotto 6 of 49 Tickets{" "}
-            <span className="ml-8 font-mono text-sm text-gray-900 align-middle bg-white rounded-full px-2 py-1">
-              {tickets.length}
-            </span>
+            Play the classic - 6 of 49 Lotto
           </h2>
         </div>
         <div className="mt-4 flex md:mt-0 md:ml-4">
@@ -42,6 +40,19 @@ export default function Lotto6of49Page() {
           >
             New Ticket
           </button>
+        </div>
+      </div>
+      <div>
+        <CreateTicket/>
+      </div>
+      <div className="mt-16 md:flex md:items-center md:justify-between">
+        <div className="min-w-0 flex-1">
+          <h2 className="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white">
+            Your Lotto 6 of 49 Tickets{" "}
+            <span className="ml-8 font-mono text-sm text-gray-900 align-middle bg-white rounded-full px-2 py-1">
+              {tickets.length}
+            </span>
+          </h2>
         </div>
       </div>
       <div className="my-16 flex flex-grid gap-8">{allUserTickets}</div>

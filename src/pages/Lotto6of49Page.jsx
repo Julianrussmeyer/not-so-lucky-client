@@ -1,7 +1,7 @@
 import TicketCard from "../components/TicketCard.jsx";
 import api from "../lib/api";
 import { useState, useEffect } from "react";
-import CreateTicket from "../components/CreateTicket.jsx"
+import CreateTicket from "../components/TicketForm.jsx"
 
 export default function Lotto6of49Page() {
   const [tickets, setTickets] = useState([]);
@@ -20,13 +20,13 @@ export default function Lotto6of49Page() {
   }, []);
 
   const allUserTickets = tickets.map((ticket) => (
-    <div className="">
-      <TicketCard key={ticket._id} ticket={ticket} />
+    <div key={ticket._id}>
+      <TicketCard ticket={ticket} />
     </div>
   ));
 
   return (
-    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mt-16 md:flex md:items-center md:justify-between">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight dark:text-white">
@@ -55,7 +55,9 @@ export default function Lotto6of49Page() {
           </h2>
         </div>
       </div>
-      <div className="my-16 flex flex-grid gap-8">{allUserTickets}</div>
+      <div className="my-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {allUserTickets}
+      </div>
     </div>
   );
 }

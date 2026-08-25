@@ -1,4 +1,4 @@
-export default function Heropage() {
+export default function Homepage() {
   return (
     <div className="bg-white px-6 py-24 sm:py-32 lg:px-8 dark:bg-gray-900">
       <div className="mx-auto max-w-2xl text-center">

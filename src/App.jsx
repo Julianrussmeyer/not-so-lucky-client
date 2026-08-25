@@ -8,6 +8,7 @@ import IsPrivate from "./components/IsPrivate.jsx"
 import Lotto6of49Page from "./pages/Lotto6of49Page.jsx"
 import NewTicket from "./pages/NewTicket.jsx"
 import EditTicket from "./pages/EditTicket.jsx"
+import Footer from "./pages/Footer.jsx"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/games/lotto-6of49/new-ticket" element={<IsPrivate><NewTicket /></IsPrivate>} />
         <Route path="/games/lotto-6of49/tickets/:ticketId/edit" element={<IsPrivate><EditTicket /></IsPrivate>} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

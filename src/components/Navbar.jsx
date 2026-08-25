@@ -46,13 +46,8 @@ export default function Example() {
             <NavLink to="/" className="flex shrink-0 items-center">
               <img
                 alt="Your Company"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto dark:hidden"
-              />
-              <img
-                alt="Your Company"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto not-dark:hidden"
+                src="../public/Logo.png"
+                className="h-12 w-auto"
               />
             </NavLink>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -86,7 +81,6 @@ export default function Example() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <MenuButton className="relative flex rounded-full text-gray-400 hover:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600 dark:hover:text-white dark:focus:outline-indigo-500">
@@ -154,14 +148,22 @@ export default function Example() {
           >
             Lotto49
           </DisclosureButton>
-
-          <DisclosureButton
-            as="a"
-            href="/auth"
-            className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:bg-white/5 dark:hover:text-white"
-          >
-            Login
-          </DisclosureButton>
+          {user ? (
+            <DisclosureButton
+              onClick={logout}
+              className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:bg-white/5 dark:hover:text-white"
+            >
+              Sign Out
+            </DisclosureButton>
+          ) : (
+            <DisclosureButton
+              as="a"
+              href="/auth"
+              className="block border-l-4 border-transparent py-2 pr-4 pl-3 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:bg-white/5 dark:hover:text-white"
+            >
+              Login
+            </DisclosureButton>
+          )}
         </div>
       </DisclosurePanel>
     </Disclosure>

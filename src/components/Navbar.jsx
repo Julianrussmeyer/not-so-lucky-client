@@ -9,7 +9,6 @@ import {
 } from "@headlessui/react";
 import {
   Bars3Icon,
-  BellIcon,
   XMarkIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
@@ -60,27 +59,33 @@ export default function Example() {
               {/* Current: "border-indigo-600 dark:border-indigo-500 text-gray-900 dark:text-white", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white" */}
               <NavLink
                 to="/"
-                className="inline-flex items-center border-b-2 border-indigo-600 px-1 pt-1 text-sm font-medium text-gray-900 dark:border-indigo-500 dark:text-white"
+                end
+                className={({ isActive }) =>
+                  `inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                    isActive
+                      ? "border-indigo-600 text-white"
+                      : "border-transparent text-white hover:border-gray-300"
+                  }`
+                }
               >
                 Dashboard
               </NavLink>
               <NavLink
                 to="/games/lotto-6of49/"
-                className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white"
+                end
+                className={({ isActive }) =>
+                  `inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
+                    isActive
+                      ? "border-indigo-600 text-white"
+                      : "border-transparent text-white hover:border-gray-300"
+                  }`
+                }
               >
                 Lotto49
               </NavLink>
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-600 dark:hover:text-white dark:focus:outline-indigo-500"
-            >
-              <span className="absolute -inset-1.5" />
-              <span className="sr-only">View notifications</span>
-              <BellIcon aria-hidden="true" className="size-6" />
-            </button>
 
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">

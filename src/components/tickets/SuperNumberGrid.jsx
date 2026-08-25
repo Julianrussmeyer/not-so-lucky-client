@@ -1,4 +1,4 @@
-export default function Boxes10({ selection }) {
+export default function Boxes10({ selection, selectedNumber, onChange }) {
   const numbers = [...Array(10).keys()];
 
   const checkboxes = numbers.map((num) => {
@@ -9,10 +9,12 @@ export default function Boxes10({ selection }) {
           {num}
         </label>
         <input
-          type="checkbox"
+          type="radio"
           id={inputId}
           name="superNumber"
           value={num}
+          checked={selectedNumber === num}
+          onChange={() => onChange(num)}
           className="size-4 accent-indigo-600"
         />
       </div>

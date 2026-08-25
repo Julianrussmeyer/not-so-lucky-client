@@ -1,4 +1,8 @@
-export default function Boxes49({ selection }) {
+export default function Boxes49({
+  selection,
+  selectedNumbers,
+  onToggleNumber,
+}) {
   const numbers = Array.from({ length: 49 }, (_, index) => index + 1);
 
   const checkboxes = numbers.map((num) => {
@@ -15,6 +19,9 @@ export default function Boxes49({ selection }) {
           type="checkbox"
           id={inputId}
           name={inputId}
+          checked={selectedNumbers.includes(num)}
+          disabled={selectedNumbers.length >= 6 && !selectedNumbers.includes(num)}
+          onChange={() => onToggleNumber(num)}
           className="size-3 accent-indigo-600"
         />
       </div>

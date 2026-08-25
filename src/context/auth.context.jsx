@@ -6,7 +6,9 @@ const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(() =>
+    Boolean(localStorage.getItem("authToken")),
+  );
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -42,34 +44,32 @@ export default function AuthProvider({ children }) {
     }
   };
 
-  const verify = async () => {
-    try {
-      setLoading(true);
-      const response = await api.get("/auth/verify");
-      if (response.status === 200) {
-        setUser(response.data.user);
-      }
-    } catch (error) {
-      localStorage.clear();
-      setUser(null);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const logout = () => {
     setUser(null);
     localStorage.clear();
     navigate("/auth");
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      verify();
-    }
-  }, []);
+useEffect(() => {
+  const token = localStorage.getItem("authToken");
+
+  if (token) {
+    api
+      .get("/auth/verify")
+      .then((response) => {
+        if (response.status === 200) {
+          setUser(response.data.user);
+        }
+      })
+      .catch(() => {
+        localStorage.removeItem("authToken");
+        setUser(null);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+}, []);
 
   return (
     <AuthContext.Provider

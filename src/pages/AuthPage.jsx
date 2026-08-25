@@ -34,7 +34,6 @@ export default function AuthPage() {
   };
 
   useEffect(() => {
-    console.log(userInfo);
   }, [userInfo]);
   if (signedUp) {
     return (

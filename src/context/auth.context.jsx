@@ -68,7 +68,6 @@ export default function AuthProvider({ children }) {
     const token = localStorage.getItem("authToken");
     if (token) {
       verify();
-      console.log("##### You are logged in")
     }
   }, []);
 

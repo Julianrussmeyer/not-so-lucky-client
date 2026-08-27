@@ -16,7 +16,6 @@ export default function UserStats({ userStats }) {
     style: "currency",
     currency: "EUR",
   });
-  console.log(formattedSpent, formattedWins);
   return (
     <section className="mt-8 rounded-xl bg-gray-800/70 p-5 text-white ring-1 ring-white/10">
       <h3 className="font-semibold">Gambling summary</h3>
@@ -35,7 +34,15 @@ export default function UserStats({ userStats }) {
         </div>
         <div className="rounded-lg bg-gray-900/60 p-4">
           <p className="text-sm text-gray-400">Profit / loss</p>
-          <p className="mt-1 text-lg font-semibold">{formattedProfit}</p>
+          <p
+            className={
+              formattedProfit >= 0
+                ? "text-green-200 mt-1 text-lg font-semibold"
+                : "text-red-400 mt-1 text-lg font-semibold"
+            }
+          >
+            {formattedProfit}
+          </p>
         </div>
       </div>
     </section>

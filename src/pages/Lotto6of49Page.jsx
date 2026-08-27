@@ -59,6 +59,32 @@ export default function Lotto6of49Page() {
     </div>
   ));
 
+  const spent = simulation ? simulation.ticketCost / 100 : 0;
+  const won = simulation ? simulation.ticketWin / 100 : 0;
+  const profit = won - spent;
+
+  const formattedDraws = simulation
+    ? simulation.numberOfDraws.toLocaleString("en-US")
+    : "";
+  const formattedSpent = simulation
+    ? spent.toLocaleString("en-US", {
+        style: "currency",
+        currency: "EUR",
+      })
+    : "";
+  const formattedWins = simulation
+    ? won.toLocaleString("en-US", {
+        style: "currency",
+        currency: "EUR",
+      })
+    : "";
+  const formattedProfit = simulation
+    ? profit.toLocaleString("en-US", {
+        style: "currency",
+        currency: "EUR",
+      })
+    : "";
+
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mt-16 md:flex md:items-center md:justify-between">
@@ -103,19 +129,19 @@ export default function Lotto6of49Page() {
           <div className="rounded-lg bg-gray-900/60 p-4">
             <p className="text-sm text-gray-400">Draws</p>
             <p className="mt-1 text-lg font-semibold">
-              {simulation ? simulation.numberOfDraws : "—"}
+              {simulation ? formattedDraws : "—"}
             </p>
           </div>
           <div className="rounded-lg bg-gray-900/60 p-4">
             <p className="text-sm text-gray-400">Cost</p>
             <p className="mt-1 text-lg font-semibold">
-              {simulation ? `${simulation.ticketCost / 100} €` : "—"}
+              {simulation ? `${formattedSpent}` : "—"}
             </p>
           </div>
           <div className="rounded-lg bg-gray-900/60 p-4">
             <p className="text-sm text-gray-400">Winnings</p>
             <p className="mt-1 text-lg font-semibold">
-              {simulation ? `${simulation.ticketWin / 100} €` : "—"}
+              {simulation ? `${formattedWins}` : "—"}
             </p>
           </div>
           <div className="rounded-lg bg-gray-900/60 p-4">
@@ -123,13 +149,9 @@ export default function Lotto6of49Page() {
             <p className="mt-1 text-lg font-semibold">
               {simulation ? (
                 <span
-                  className={
-                    simulation.ticketProfit >= 0
-                      ? "text-green-200"
-                      : "text-red-400"
-                  }
+                  className={profit >= 0 ? "text-green-200" : "text-red-400"}
                 >
-                  {`${simulation.ticketProfit / 100} €`}
+                  {`${formattedProfit}`}
                 </span>
               ) : (
                 "—"

@@ -46,7 +46,7 @@ export default function Example() {
             <NavLink to="/" className="flex shrink-0 items-center">
               <img
                 alt="Your Company"
-                src="../public/Logo.png"
+                src="../Logo.png"
                 className="h-12 w-auto"
               />
             </NavLink>

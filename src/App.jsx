@@ -9,6 +9,8 @@ import Lotto6of49Page from "./pages/Lotto6of49Page.jsx"
 import NewTicket from "./pages/NewTicket.jsx"
 import EditTicket from "./pages/EditTicket.jsx"
 import Footer from "./pages/Footer.jsx"
+import Error from "./pages/Error.jsx"
+import About from "./pages/About.jsx"
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/games/lotto-6of49" element={<IsPrivate><Lotto6of49Page /></IsPrivate>} />
         <Route path="/games/lotto-6of49/new-ticket" element={<IsPrivate><NewTicket /></IsPrivate>} />
         <Route path="/games/lotto-6of49/tickets/:ticketId/edit" element={<IsPrivate><EditTicket /></IsPrivate>} />
+        <Route path="/*" element={<Error />} />
+        <Route path="/About" element={<About />} />
       </Routes>
       <Footer/>
     </div>

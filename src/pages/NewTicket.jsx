@@ -1,4 +1,4 @@
-import CreateTicket from "../components/tickets/TicketForm.jsx";
+import TicketTicket from "../components/tickets/TicketForm.jsx";
 
 export default function NewTicket() {
   return (
@@ -11,7 +11,7 @@ export default function NewTicket() {
         </div>
       </div>
       <div>
-        <CreateTicket />
+        <TicketTicket />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
-import Boxes49 from "./LottoNumberGrid";
-import Boxes10 from "./SuperNumberGrid";
+import LottoNumberGrid from "./LottoNumberGrid";
+import SuperNumberGrid from "./SuperNumberGrid";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import api from "../../lib/api";
@@ -182,7 +182,7 @@ export default function CreateTicket({ initialTicket = null }) {
                   </button>
                 )}
               </div>
-              <Boxes49
+              <LottoNumberGrid
                 selection={index}
                 selectedNumbers={selection.numbers}
                 onToggleNumber={(number) =>
@@ -206,7 +206,7 @@ export default function CreateTicket({ initialTicket = null }) {
         <div className="rounded-xl bg-gray-900/60 p-4">
           <h3 className="font-semibold text-white">Super Number</h3>
           <div className="mt-4">
-            <Boxes10
+            <SuperNumberGrid
               selection={0}
               selectedNumber={ticket.superNumber}
               onChange={(superNumber) =>

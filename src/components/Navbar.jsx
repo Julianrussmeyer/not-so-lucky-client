@@ -45,15 +45,14 @@ export default function Example() {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <NavLink to="/" className="flex shrink-0 items-center">
               <img
-                alt="Your Company"
-                src="../Logo.png"
-                className="h-12 w-auto"
+                alt="NotSoLucky Logo"
+                src="/Logo.png"
+                className="h-12 w-auto hover:rotate-20"
               />
             </NavLink>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              {/* Current: "border-indigo-600 dark:border-indigo-500 text-gray-900 dark:text-white", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:border-white/20 dark:hover:text-white" */}
               <NavLink
-                to="/"
+                to="/user"
                 end
                 className={({ isActive }) =>
                   `inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium ${
@@ -63,7 +62,7 @@ export default function Example() {
                   }`
                 }
               >
-                Dashboard
+                Your Stats
               </NavLink>
               <NavLink
                 to="/games/lotto-6of49/"

@@ -7,6 +7,7 @@ export default function Lotto6of49Page() {
   const [tickets, setTickets] = useState([]);
   const [deleteError, setDeleteError] = useState("");
   const [simulation, setSimulation] = useState(null);
+  const [simulatedTicketName, setSimulatedTicketName] = useState(null);
 
   useEffect(() => {
     api
@@ -36,12 +37,13 @@ export default function Lotto6of49Page() {
     }
   };
 
-  const handleSimulate = async (ticketId) => {
+  const handleSimulate = async (ticketId, ticketName) => {
     try {
       const response = await api.post(
         `/games/lotto-6of49/tickets/${ticketId}/simulate`,
       );
       setSimulation(response.data.simulation);
+      setSimulatedTicketName(ticketName);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +53,7 @@ export default function Lotto6of49Page() {
     <div key={ticket._id}>
       <TicketCard
         ticket={ticket}
-        onSimulate={() => handleSimulate(ticket._id)}
+        onSimulate={() => handleSimulate(ticket._id, ticket.name)}
         onDelete={() => handleDelete(ticket)}
       />
     </div>
@@ -68,7 +70,7 @@ export default function Lotto6of49Page() {
             </span>
           </h2>
         </div>
-        <div className="mt-4 flex md:mt-0 md:ml-4">
+        <div className="mt-4 flex md:mt-0 md:ml-4 gap-4">
           {tickets.length < 6 ? (
             <NavLink
               className="ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-400"
@@ -79,13 +81,24 @@ export default function Lotto6of49Page() {
           ) : (
             <span className="text-sm text-gray-400">Ticket limit reached</span>
           )}
+          <NavLink
+            className="inline-flex items-center rounded-md bg-gray-200 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-gray-200/40 dark:shadow-none dark:hover:bg-gray-200/60 dark:focus-visible:outline-indigo-400"
+            to="/user"
+          >
+            View Stats
+          </NavLink>
         </div>
       </div>
       {deleteError && (
         <p className="mt-6 text-sm text-red-300">{deleteError}</p>
       )}
       <section className="mt-8 rounded-xl bg-gray-800/70 p-5 text-white ring-1 ring-white/10">
-        <h3 className="font-semibold">Simulation summary</h3>
+        <h3 className="font-semibold">
+          Last Ticket:{" "}
+          <span className="font-italic text-orange-300">
+            {simulation ? `${simulatedTicketName}` : ""}
+          </span>
+        </h3>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-lg bg-gray-900/60 p-4">
             <p className="text-sm text-gray-400">Draws</p>
@@ -108,7 +121,19 @@ export default function Lotto6of49Page() {
           <div className="rounded-lg bg-gray-900/60 p-4">
             <p className="text-sm text-gray-400">Profit / loss</p>
             <p className="mt-1 text-lg font-semibold">
-              {simulation ? `${simulation.ticketProfit / 100} €` : "—"}
+              {simulation ? (
+                <span
+                  className={
+                    simulation.ticketProfit >= 0
+                      ? "text-green-200"
+                      : "text-red-400"
+                  }
+                >
+                  {`${simulation.ticketProfit / 100} €`}
+                </span>
+              ) : (
+                "—"
+              )}
             </p>
           </div>
         </div>

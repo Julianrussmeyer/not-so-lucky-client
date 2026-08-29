@@ -33,24 +33,18 @@ export default function AuthPage() {
     });
   };
 
-  useEffect(() => {
-  }, [userInfo]);
+  useEffect(() => {}, [userInfo]);
   if (signedUp) {
     return (
       <>
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
-              alt="Your Company"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-              className="mx-auto h-10 w-auto dark:hidden"
+              alt="NotSoLucky Logo"
+              src="/Logo.png"
+              className="mx-auto h-20 w-auto"
             />
-            <img
-              alt="Your Company"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-              className="mx-auto h-10 w-auto not-dark:hidden"
-            />
-            <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
+            <h2 className="mt-4 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
               Login to your account
             </h2>
           </div>
@@ -153,17 +147,12 @@ export default function AuthPage() {
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            alt="Your Company"
-            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto dark:hidden"
-          />
-          <img
-            alt="Your Company"
-            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-            className="mx-auto h-10 w-auto not-dark:hidden"
-          />
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
+            <img
+              alt="NotSoLucky Logo"
+              src="/Logo.png"
+              className="mx-auto h-20 w-auto"
+            />
+          <h2 className="mt-4 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
             Create your account
           </h2>
         </div>

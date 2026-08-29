@@ -1,4 +1,4 @@
-# NotSoLucky — Client
+# NotSoLucky - Client
 
 NotSoLucky is an educational German Lotto 6aus49 simulator. It lets users test what repeatedly playing the lottery could cost over weeks, years, or even a lifetime without spending real money.
 
